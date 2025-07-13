@@ -14,4 +14,33 @@ export class LabService {
       },
     });
   }
+   async getLabUserProfile(id: string) {
+    const user = await this.prisma.user.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        email: true,
+        username: true,
+        name: true,
+        contactNo: true,
+        gender: true,
+        roles: true,
+        address: true,
+        nic: true,
+        dob: true,
+        labAdmin: {
+          select: {
+            id: true,
+            userId: true,
+          }
+        },
+      },
+    });
+
+    if (!user || user.roles !== 'LAB_ADMIN') {
+      return { error: 'User is not a Lab Admin or does not exist.' };
+    }
+
+    return user;
+  }
 }
