@@ -16,5 +16,9 @@ export class LabController {
   @Get('profile/:id')
   getLabUserProfile(@Param('id') id: string) {
     return this.labService.getLabUserProfile(id);
+  }  
+  @Get('lab-profile/:userId')
+  getLabProfileByUserId(@Param('userId') userId: string) {
+    return this.labService.getLabProfileByUserId(userId);
   }
 }

@@ -42,5 +42,22 @@ export class LabService {
     }
 
     return user;
+   }  
+
+  async getLabProfileByUserId(userId: string) {
+    return this.prisma.lab.findFirst({
+      where: { userId },
+      select: {
+        id: true,
+        name: true,
+        registrationNumber: true,
+        contactNumber: true,
+        website: true,
+        address: true,
+        description: true,
+        certificate: true,
+        userId: true,
+      },
+    });
   }
 }

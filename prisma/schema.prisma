@@ -115,6 +115,7 @@ model Lab {
   address            String
   description        String
   certificate        String
+  userId             String   @unique
 }
 
 model Appointment {
