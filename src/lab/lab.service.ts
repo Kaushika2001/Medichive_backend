@@ -60,4 +60,15 @@ export class LabService {
       },
     });
   }
+
+  async getAllLabReports() {
+    return this.prisma.labReport.findMany();
+  }
+
+  async createLabReport(data: { id?: number; description: string; name: string }) {
+    await this.prisma.labReport.create({
+      data,
+    });
+    return { message: 'Lab report created successfully' };
+  }
 }

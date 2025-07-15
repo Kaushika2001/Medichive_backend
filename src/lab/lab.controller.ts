@@ -3,6 +3,7 @@
 import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { LabService } from './lab.service';
 import { CreateComplaintDto } from './dto/create-complaint.dto';
+import { CreateLabReportDto } from './dto/create-lab-report.dto';
 
 @Controller('lab')
 export class LabController {
@@ -20,5 +21,13 @@ export class LabController {
   @Get('lab-profile/:userId')
   getLabProfileByUserId(@Param('userId') userId: string) {
     return this.labService.getLabProfileByUserId(userId);
+  }
+  @Get('lab-reports')
+  getAllLabReports() {
+    return this.labService.getAllLabReports();
+  }
+  @Post('lab-reports')
+  createLabReport(@Body() dto: CreateLabReportDto) {
+    return this.labService.createLabReport(dto);
   }
 }
